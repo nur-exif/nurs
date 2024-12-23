@@ -57,6 +57,7 @@ an error related to the product key in the unattended answer file during the ins
 process.  
 
 ![Connected with Windows Client](images/Connected-with-Windows-Client.png)  
+![Connected with Windows Client](images/Connected with Windows Client.png)
 
 After conducting some research on online forums, I discovered a solution. I decided to  
 bypass the alert in the VirtualBox expert settings under storage, which resolved the  
