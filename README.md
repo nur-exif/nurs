@@ -56,9 +56,8 @@ being the installation of the Windows 10 Professional ISO on VirtualBox. I encou
 an error related to the product key in the unattended answer file during the installation  
 process.  
 
-![Connected with Windows Client](images/Connected-with-Windows-Client.png)  
-![Connected with Windows Client](images/Connected with Windows Client.png)
-![Connected with Windows Client.png]
+![Connected with Windows Client](https://raw.githubusercontent.com/nur-exif/nurs/f58c5352c07e6d4127764efdbf12e822a5d2810b/Connected%20with%20Windows%20Client.png)
+
 
 After conducting some research on online forums, I discovered a solution. I decided to  
 bypass the alert in the VirtualBox expert settings under storage, which resolved the  
