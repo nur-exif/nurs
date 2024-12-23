@@ -1,54 +1,136 @@
-<header>
+# Group Policy Management with Active Directory Home Lab  
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+## Objective  
 
-# GitHub Pages
+To design and implement a secure, scalable Active Directory (AD) environment using  
+Windows Server 2022. This project demonstrates my core AD skills for Group policy  
+creation and management.  
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+## Tools and Technologies Used  
 
-</header>
+- Oracle VirtualBox – Virtualization platform  
+- Windows Server 2022 – Domain Controller and Active Directory Domain Services (ADDS)  
+- Microsoft Active Directory – Directory management and user provisioning  
+- PowerShell – Scripting for automation  
+- Draw.io – Diagramming  
 
-<!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
--->
+## Project Scope  
 
-## Step 1: Enable GitHub Pages
+Platform : Oracle VirtualBox  
+Domain : exiflab.com  
+Operating System : Windows Server 2022 (4GB RAM , 2 5 GB Storage), Window 10 Pro (64bit)  
 
-_Welcome to GitHub Pages and Jekyll :tada:!_
+## Environment Setup  
 
-The first step is to enable GitHub Pages on this [repository](https://docs.github.com/en/get-started/quickstart/github-glossary#repository). When you enable GitHub Pages on a repository, GitHub takes the content that's on the main branch and publishes a website based on its contents.
+Deployed a virtualized Windows Server 2022 instance on Oracle VirtualBox with internal  
+networking to enable inter-VM communication. Installed Active Directory Domain  
+Services (ADDS) and promoted the server to a Domain Controller (DC) for the domain  
+exiflab.com.  
 
-### :keyboard: Activity: Enable GitHub Pages
+![OU Structure](images/OU-Structure.png)  
 
-1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
-1. Under your repository name, click **Settings**.
-1. Click **Pages** in the **Code and automation** section.
-1. Ensure "Deploy from a branch" is selected from the **Source** drop-down menu, and then select `main` from the **Branch** drop-down menu.
-1. Click the **Save** button.
-1. Wait about _one minute_ then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-   > Turning on GitHub Pages creates a deployment of your repository. GitHub Actions may take up to a minute to respond while waiting for the deployment. Future steps will be about 20 seconds; this step is slower.
-   > **Note**: In the **Pages** of **Settings**, the **Visit site** button will appear at the top. Click the button to see your GitHub Pages site.
+## Organizational Unit (OU) Structure  
 
-<footer>
+Created a structured Organizational Unit (OU) hierarchy to reflect company  
+departments:  
 
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
+- Finance  
+- Operations  
+- Management  
+- Marketing  
 
----
+I have assigned 3-5 users to simulate a real world.  
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+To showcase automation skills, I created the computer OU in the PowerShell – find it my  
+ps1 script file.  
 
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+![Creating the OUs](images/Creating-the-OUs.png)  
 
-</footer>
+It has been used to the automate the OU creation using PowerShell which enhances  
+efficiency repeatability and accuracy.  
+
+## Connecting with Windows Client  
+
+The project presented several challenges along the way, with one of the most significant  
+being the installation of the Windows 10 Professional ISO on VirtualBox. I encountered  
+an error related to the product key in the unattended answer file during the installation  
+process.  
+
+![Connected with Windows Client](images/Connected-with-Windows-Client.png)  
+
+After conducting some research on online forums, I discovered a solution. I decided to  
+bypass the alert in the VirtualBox expert settings under storage, which resolved the  
+issue and allowed the installation to proceed successfully.  
+
+Following the installation, I navigated to the  
+Network Adapter settings > Change Adapter Options > Properties > IPv.  
+
+Here, I configured a static IP address and entered the DNS address of the Active  
+Directory domain.  
+
+To verify the connection, I used Command Prompt to ping the DNS address, which  
+resulted in a successful connection with 0% packet loss.  
+
+## Group Policy Configuration  
+
+Group Policy in Active Directory allows administrators to define and manage policies for  
+users and computers within the domain, ensuring consistent configurations across the  
+network.  
+
+For this project, I configured cross-functional group policies that applied uniformly  
+across all departments. These policies were designed to enforce security settings,  
+software installations, and user configurations, ensuring that the same standards and  
+practices were maintained, regardless of the department or location.  
+
+### 1. Password Hardening Policy (Security Compliance)  
+
+**Configuration:**  
+Tools> Group Policy Management > Create Group Policy Objects  
+
+- Enforce password history: 5 passwords remembered  
+- Minimum password length: 12 characters  
+- Maximum password age: 30 days  
+- Password complexity: Enabled  
+
+![Password Enforcement](images/Password-Enforcement.png)  
+
+Enforcing strict password policies is fundamental to defend against brute-force attacks  
+and credential theft. By requiring complex passwords and regular changes, this policy  
+mitigates password reuse and ensures stronger authentication across departments. It  
+aligns with compliance frameworks like NIST and ISO2 7001.  
+
+### 2. Disable Removable Media  
+
+**Configuration:**  
+Administrative Templates: Policy Definition > System > All Removable Storage Classes:  
+Deny all access  
+
+![Removable Media Access Block](images/Removable-Media-Access-Block.png)  
+
+Blocking USB drives and external devices prevents data exfiltration, malware  
+introduction, and insider threats. This proactive policy safeguards sensitive financial  
+data and intellectual property by preventing unauthorized data transfers. It can be  
+critical for industries that handle sensitive information (e.g., Finance, HR), ensuring data  
+integrity and confidentiality.  
+
+### 3. Block Control Panel Access (Restrict System Changes)  
+
+**Configuration:**  
+Administrative Templates > Control Panel > Settings Page Visibility.  
+Here I enabled the option by using the command _hide_* to hide all the all-control panel  
+items  
+
+![Hiding Control Panel](images/Hiding-Control-Panel.png)  
+
+Limiting access to system settings reduces the risk of unauthorized system  
+modifications or misconfigurations by end users. This policy enforces role-based  
+access control by ensuring only administrators can alter critical system settings,  
+preventing accidental or malicious changes.  
+
+It simplifies system administration by maintaining consistent configurations across user  
+environments.  
+
+^_____^  
+
+Lastly, I look forward to extending on this project with the principles learned from my  
+CompTIA Security+ certification. Happy Holidays. 
