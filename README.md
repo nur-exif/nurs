@@ -27,7 +27,7 @@ networking to enable inter-VM communication. Installed Active Directory Domain
 Services (ADDS) and promoted the server to a Domain Controller (DC) for the domain  
 exiflab.com.  
 
-![OU Structure](images/OU-Structure.png)  
+
 
 ## Organizational Unit (OU) Structure  
 
@@ -39,12 +39,14 @@ departments:
 - Management  
 - Marketing  
 
+![OU Structure](https://raw.githubusercontent.com/nur-exif/nurs/7a7c9eadb0dcdb94088da3bc22efb74e6bcdfc4e/OU%20Structure.png)
+
 I have assigned 3-5 users to simulate a real world.  
 
 To showcase automation skills, I created the computer OU in the PowerShell – find it my  
 ps1 script file.  
 
-![Creating the OUs](images/Creating-the-OUs.png)  
+![Creating the OUs](https://raw.githubusercontent.com/nur-exif/nurs/7a7c9eadb0dcdb94088da3bc22efb74e6bcdfc4e/Creating%20the%20OUs.png)
 
 It has been used to the automate the OU creation using PowerShell which enhances  
 efficiency repeatability and accuracy.  
@@ -93,7 +95,8 @@ Tools> Group Policy Management > Create Group Policy Objects
 - Maximum password age: 30 days  
 - Password complexity: Enabled  
 
-![Password Enforcement](images/Password-Enforcement.png)  
+![Password Enforcement](https://raw.githubusercontent.com/nur-exif/nurs/7a7c9eadb0dcdb94088da3bc22efb74e6bcdfc4e/Password%20Enforcement.png)
+
 
 Enforcing strict password policies is fundamental to defend against brute-force attacks  
 and credential theft. By requiring complex passwords and regular changes, this policy  
@@ -106,7 +109,8 @@ aligns with compliance frameworks like NIST and ISO2 7001.
 Administrative Templates: Policy Definition > System > All Removable Storage Classes:  
 Deny all access  
 
-![Removable Media Access Block](images/Removable-Media-Access-Block.png)  
+![Removable Media Access Block](https://raw.githubusercontent.com/nur-exif/nurs/7a7c9eadb0dcdb94088da3bc22efb74e6bcdfc4e/Removable%20Media%20Access%20Block.png)
+
 
 Blocking USB drives and external devices prevents data exfiltration, malware  
 introduction, and insider threats. This proactive policy safeguards sensitive financial  
@@ -121,7 +125,7 @@ Administrative Templates > Control Panel > Settings Page Visibility.
 Here I enabled the option by using the command _hide_* to hide all the all-control panel  
 items  
 
-![Hiding Control Panel](images/Hiding-Control-Panel.png)  
+![Hiding Control Panel](https://raw.githubusercontent.com/nur-exif/nurs/7a7c9eadb0dcdb94088da3bc22efb74e6bcdfc4e/Hiding%20Control%20Panel.png)
 
 Limiting access to system settings reduces the risk of unauthorized system  
 modifications or misconfigurations by end users. This policy enforces role-based  
